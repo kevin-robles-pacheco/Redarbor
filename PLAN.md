@@ -6,6 +6,21 @@ Marca cada tarea en este archivo. Pendiente: `- [ ]`. Completada: `- [x]`. En la
 
 Fuente del enunciado: `Redarbor - Prueba técnica developer uso IA.pdf`. El enunciado anuncia 8 reglas de Clean Code y enumera 7. Se implementan las 7 escritas.
 
+## Spec-Driven Development (Spec Kit)
+
+Este checklist es la vista operativa del agente. La fuente SDD está en:
+
+| Fase | Ruta |
+|------|------|
+| Constitución | [`.specify/memory/constitution.md`](.specify/memory/constitution.md) |
+| Especificación | [`specs/001-inventory-api/spec.md`](specs/001-inventory-api/spec.md) |
+| Clarificación | [`specs/001-inventory-api/clarifications.md`](specs/001-inventory-api/clarifications.md) |
+| Plan | [`specs/001-inventory-api/plan.md`](specs/001-inventory-api/plan.md) |
+| Tareas | [`specs/001-inventory-api/tasks.md`](specs/001-inventory-api/tasks.md) |
+| API / Manual | [`docs/api.md`](docs/api.md), [`docs/manual.md`](docs/manual.md) |
+
+Si el alcance cambia, actualiza primero `spec.md` y luego alinea este archivo con `tasks.md`.
+
 ## Decisiones
 
 - .NET 8. El enunciado pide .NET 6 o .NET Core. .NET 8 es la línea LTS actual. El cambio a `net6.0` es solo el TFM si lo exigen literal.
@@ -39,6 +54,11 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 - [x] `docs-skill-implement` — skill que toma la siguiente tarea pendiente
 - [x] `docs-skill-review` — skill de revisión contra las reglas del proyecto
 - [x] `docs-skill-verify` — skill de build, tests y humo
+- [x] `docs-sdd-constitution` — constitución Spec Kit en `.specify/memory/constitution.md`
+- [x] `docs-sdd-spec` — especificación y clarificaciones en `specs/001-inventory-api/`
+- [x] `docs-sdd-plan-tasks` — plan y tareas Spec Kit alineados al checklist
+- [x] `docs-api` — documentación HTTP en `docs/api.md`
+- [x] `docs-manual` — manual de uso en `docs/manual.md`
 
 ### Esqueleto
 

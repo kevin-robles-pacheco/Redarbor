@@ -2,6 +2,14 @@
 
 This repository is the Redarbor inventory technical test. Follow this file before writing or reviewing code. The working checklist is [PLAN.md](PLAN.md). Skills live in `.cursor/skills/`.
 
+Spec-Driven Development (GitHub Spec Kit) artifacts:
+
+- Constitution: [.specify/memory/constitution.md](.specify/memory/constitution.md)
+- Specification, clarifications, plan, tasks: [specs/001-inventory-api/](specs/001-inventory-api/)
+- API docs and user manual: [docs/api.md](docs/api.md), [docs/manual.md](docs/manual.md)
+
+When scope changes, update `spec.md` first, then `plan.md` / `tasks.md`, then `PLAN.md`.
+
 ## Stack
 
 - .NET 8, C#, ASP.NET Core, MediatR
