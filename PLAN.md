@@ -65,11 +65,11 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 
 ### Infraestructura
 
-- [ ] `infra-sql` — script PostgreSQL sin foreign keys, con primary keys e índice único de SKU
-- [ ] `infra-ef-read` — repositorios EF de lectura
-- [ ] `infra-dapper-write` — repositorios Dapper de escritura y writer transaccional
-- [ ] `infra-connection` — `NpgsqlConnectionFactory`
-- [ ] `infra-schema` — inicializador idempotente del esquema
+- [x] `infra-sql` — script PostgreSQL sin foreign keys, con primary keys e índice único de SKU
+- [x] `infra-ef-read` — repositorios EF de lectura
+- [x] `infra-dapper-write` — repositorios Dapper de escritura y writer transaccional
+- [x] `infra-connection` — `NpgsqlConnectionFactory`
+- [x] `infra-schema` — inicializador idempotente del esquema
 
 ### API
 
