@@ -2,6 +2,19 @@
 
 API de inventario de productos: categorías, productos y movimientos de entrada y salida. .NET 8, PostgreSQL, CQRS con MediatR, Entity Framework Core en lecturas y Dapper en escrituras.
 
+Desarrollado con Spec-Driven Development ([GitHub Spec Kit](https://github.com/github/spec-kit)): constitución, especificación, clarificación, plan y tareas.
+
+| Documento | Ruta |
+|-----------|------|
+| Constitución | [`.specify/memory/constitution.md`](.specify/memory/constitution.md) |
+| Especificación | [`specs/001-inventory-api/spec.md`](specs/001-inventory-api/spec.md) |
+| Clarificaciones | [`specs/001-inventory-api/clarifications.md`](specs/001-inventory-api/clarifications.md) |
+| Plan | [`specs/001-inventory-api/plan.md`](specs/001-inventory-api/plan.md) |
+| Tareas | [`specs/001-inventory-api/tasks.md`](specs/001-inventory-api/tasks.md) |
+| Documentación del API | [`docs/api.md`](docs/api.md) |
+| Manual de uso | [`docs/manual.md`](docs/manual.md) |
+| Checklist del agente | [`PLAN.md`](PLAN.md) |
+
 ## Requisitos
 
 - Docker y Docker Compose
@@ -105,10 +118,18 @@ Cubren las reglas de stock, los handlers con puertos falsos, el script sin forei
 - PostgreSQL en lugar de SQL Server. Sigue siendo SQL relacional, la imagen oficial corre en ARM y el script de arranque es nativo. No hay foreign keys: la integridad la aplican el dominio y la aplicación.
 - Lecturas con EF Core y escrituras con Dapper, como pide la prueba.
 
+## Documentación operativa
+
+- Arranque paso a paso, flujo curl y troubleshooting: [`docs/manual.md`](docs/manual.md)
+- Contratos HTTP, cuerpos y códigos: [`docs/api.md`](docs/api.md)
+- Quickstart de la feature Spec Kit: [`specs/001-inventory-api/quickstart.md`](specs/001-inventory-api/quickstart.md)
+
+Los ejemplos cortos de token y CRUD de este README se mantienen como atajo; el detalle vive en el manual y en la doc del API.
+
 ## Uso de IA
 
 Herramienta: Cursor.
 
-Fases: plan de trabajo en `PLAN.md`, instrucciones en `AGENTS.md`, implementación por capas con las skills `redarbor-implement`, `redarbor-review` y `redarbor-verify`, y verificación con build, tests y una prueba manual de los endpoints.
+Fases SDD: constitución → especificación → clarificación → plan → tareas (Spec Kit), checklist operativo en `PLAN.md`, instrucciones en `AGENTS.md`, implementación por capas con las skills `redarbor-implement`, `redarbor-review` y `redarbor-verify`, y verificación con build, tests y smoke de endpoints.
 
 La salida se validó compilando la solución, ejecutando `dotnet test` y recorriendo token, alta de categoría, alta de producto, entrada de stock, salida rechazada por stock y la respuesta 429.
