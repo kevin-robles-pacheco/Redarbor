@@ -59,6 +59,9 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 - [x] `docs-sdd-plan-tasks` — plan y tareas Spec Kit alineados al checklist
 - [x] `docs-api` — documentación HTTP en `docs/api.md`
 - [x] `docs-manual` — manual de uso en `docs/manual.md`
+- [x] `sonar-fixells-s4457` — validación fuera del método async en `CategoryEfReadRepository`
+- [x] `sonar-smells-s107` — `Product`/`ProductResponse` sin constructores de 9 parámetros
+- [x] `sonar-smells-s3925` — `.editorconfig` desactiva S3925 (serialización obsoleta en .NET 8)
 
 ### Esqueleto
 

@@ -1,0 +1,5 @@
+root = true
+
+[*.cs]
+# Binary exception serialization is obsolete in .NET 8; domain/application exceptions stay simple.
+dotnet_diagnostic.S3925.severity = none
