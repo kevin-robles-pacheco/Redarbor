@@ -83,16 +83,16 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 
 ### Docker y README
 
-- [ ] `docker-api` — Dockerfile multi-stage
-- [ ] `docker-compose` — `api` + `postgres:16-alpine`
-- [ ] `docs-readme` — README de arranque, pruebas, rate limit y declaración de IA
+- [x] `docker-api` — Dockerfile multi-stage
+- [x] `docker-compose` — `api` + `postgres:16-alpine`
+- [x] `docs-readme` — README de arranque, pruebas, rate limit y declaración de IA
 
 ### Verificación
 
-- [ ] `verify-build` — `dotnet build`
-- [ ] `verify-test` — `dotnet test`
+- [x] `verify-build` — `dotnet build`
+- [x] `verify-test` — `dotnet test`
 - [ ] `verify-review` — revisión de inglés, responsabilidades y capas
-- [ ] `verify-smoke` — token, categoría, producto, entrada, salida rechazada y ráfaga 429
+- [x] `verify-smoke` — token, categoría, producto, entrada, salida rechazada y ráfaga 429
 
 ## Fuera de alcance
 
