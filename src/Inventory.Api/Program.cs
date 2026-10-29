@@ -1,3 +1,11 @@
+using Inventory.Api;
+using Inventory.Application;
+using Inventory.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure();
+builder.Services.AddInventoryApi();
 var app = builder.Build();
+await app.InitializeDatabaseAsync();
+app.UseInventoryApi();
 app.Run();

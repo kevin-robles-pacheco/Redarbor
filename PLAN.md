@@ -73,13 +73,13 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 
 ### API
 
-- [ ] `api-oauth` — `POST /oauth/token` y validación JWT
-- [ ] `api-categories` — CRUD `/api/categories`
-- [ ] `api-products` — CRUD `/api/products`
-- [ ] `api-movements` — `POST /api/inventory-movements`
-- [ ] `api-rate-limit` — políticas `api` y `oauth`, respuesta 429
-- [ ] `api-errors` — ProblemDetails
-- [ ] `api-swagger` — Swagger con OAuth2 client credentials
+- [x] `api-oauth` — `POST /oauth/token` y validación JWT
+- [x] `api-categories` — CRUD `/api/categories`
+- [x] `api-products` — CRUD `/api/products`
+- [x] `api-movements` — `POST /api/inventory-movements`
+- [x] `api-rate-limit` — políticas `api` y `oauth`, respuesta 429
+- [x] `api-errors` — ProblemDetails
+- [x] `api-swagger` — Swagger con OAuth2 client credentials
 
 ### Docker y README
 
