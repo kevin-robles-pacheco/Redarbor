@@ -42,26 +42,26 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 
 ### Esqueleto
 
-- [ ] `skeleton-solution` — `Inventory.sln` y proyectos Domain, Application, Infrastructure, Api
-- [ ] `skeleton-tests` — `Inventory.Domain.Tests` e `Inventory.Application.Tests`
-- [ ] `skeleton-ignore` — `.gitignore` que excluye `.env`
-- [ ] `skeleton-env` — `.env.example` con las variables, sin secretos reales
+- [x] `skeleton-solution` — `Inventory.sln` y proyectos Domain, Application, Infrastructure, Api
+- [x] `skeleton-tests` — `Inventory.Domain.Tests` e `Inventory.Application.Tests`
+- [x] `skeleton-ignore` — `.gitignore` que excluye `.env`
+- [x] `skeleton-env` — `.env.example` con las variables, sin secretos reales
 
 ### Dominio (test primero)
 
-- [ ] `domain-category` — entidad `Category` y sus tests
-- [ ] `domain-product` — entidad `Product` y sus tests
-- [ ] `domain-movement-type` — enum `MovementType` en su propio archivo
-- [ ] `domain-movement` — entidad `InventoryMovement`
-- [ ] `domain-stock` — tests de entrada, salida, stock insuficiente y cantidad no positiva; después la regla
-- [ ] `domain-exceptions` — excepciones de dominio, una por archivo
+- [x] `domain-category` — entidad `Category` y sus tests
+- [x] `domain-product` — entidad `Product` y sus tests
+- [x] `domain-movement-type` — enum `MovementType` en su propio archivo
+- [x] `domain-movement` — entidad `InventoryMovement`
+- [x] `domain-stock` — tests de entrada, salida, stock insuficiente y cantidad no positiva; después la regla
+- [x] `domain-exceptions` — excepciones de dominio, una por archivo
 
 ### Aplicación
 
-- [ ] `app-ports` — puertos de lectura, escritura, movimiento, conexión, esquema y token
-- [ ] `app-categories` — commands, queries, handlers y DTOs de categorías, con tests
-- [ ] `app-products` — commands, queries, handlers y DTOs de productos, con tests
-- [ ] `app-movements` — `RegisterInventoryMovement` y su test con puerto falso
+- [x] `app-ports` — puertos de lectura, escritura, movimiento, conexión, esquema y token
+- [x] `app-categories` — commands, queries, handlers y DTOs de categorías, con tests
+- [x] `app-products` — commands, queries, handlers y DTOs de productos, con tests
+- [x] `app-movements` — `RegisterInventoryMovement` y su test con puerto falso
 
 ### Infraestructura
 

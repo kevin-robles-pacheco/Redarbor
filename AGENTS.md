@@ -1,4 +1,4 @@
-# Inventory API agent guide
+    # Inventory API agent guide
 
 This repository is the Redarbor inventory technical test. Follow this file before writing or reviewing code. The working checklist is [PLAN.md](PLAN.md). Skills live in `.cursor/skills/`.
 
