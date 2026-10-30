@@ -4,6 +4,8 @@ obj/
 *.user
 *.suo
 TestResults/
+coverage/
+.sonarqube/
 .DS_Store
 .env
 

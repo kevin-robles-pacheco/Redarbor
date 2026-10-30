@@ -62,6 +62,8 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 - [x] `sonar-fixells-s4457` — validación fuera del método async en `CategoryEfReadRepository`
 - [x] `sonar-smells-s107` — `Product`/`ProductResponse` sin constructores de 9 parámetros
 - [x] `sonar-smells-s3925` — `.editorconfig` desactiva S3925 (serialización obsoleta en .NET 8)
+- [x] `docs-sonar-report` — informe SonarQube (smells, security, coverage) en `docs/sonar-report.md`
+- [x] `docs-sonar-plan` — plan de remediación en `docs/sonar-remediation-plan.md`
 
 ### Esqueleto
 
@@ -114,7 +116,7 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 
 - [x] `verify-build` — `dotnet build`
 - [x] `verify-test` — `dotnet test`
-- [ ] `verify-review` — revisión de inglés, responsabilidades y capas
+- [x] `verify-review` — revisión de inglés, responsabilidades y capas
 - [x] `verify-smoke` — token, categoría, producto, entrada, salida rechazada y ráfaga 429
 
 ## Fuera de alcance
