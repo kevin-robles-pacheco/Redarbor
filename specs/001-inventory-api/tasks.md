@@ -135,7 +135,7 @@
 - [x] T043 `dotnet build`
 - [x] T044 `dotnet test`
 - [x] T045 Smoke: token, categoría, producto, entrada, salida rechazada, 429
-- [ ] T046 Revisión final de inglés, responsabilidades y capas (`verify-review`)
+- [x] T046 Revisión final de inglés, responsabilidades y capas (`verify-review`)
 
 ---
 

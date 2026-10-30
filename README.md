@@ -13,6 +13,7 @@ Desarrollado con Spec-Driven Development ([GitHub Spec Kit](https://github.com/g
 | Tareas | [`specs/001-inventory-api/tasks.md`](specs/001-inventory-api/tasks.md) |
 | Documentación del API | [`docs/api.md`](docs/api.md) |
 | Manual de uso | [`docs/manual.md`](docs/manual.md) |
+| Verificación / converge | [`specs/001-inventory-api/verification.md`](specs/001-inventory-api/verification.md) |
 | Checklist del agente | [`PLAN.md`](PLAN.md) |
 
 ## Requisitos
