@@ -8,3 +8,6 @@ coverage/
 .sonarqube/
 .DS_Store
 .env
+
+coverage/
+.sonarqube/

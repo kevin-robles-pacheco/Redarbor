@@ -2,17 +2,17 @@ using Inventory.Domain.Products;
 namespace Inventory.Application.Products;
 public sealed class ProductResponse
 {
-    public ProductResponse(Guid id, string name, string description, string sku, decimal price, Guid categoryId, int quantityOnHand, bool isActive, DateTime createdAtUtc)
+    private ProductResponse(Product product)
     {
-        Id = id;
-        Name = name;
-        Description = description;
-        Sku = sku;
-        Price = price;
-        CategoryId = categoryId;
-        QuantityOnHand = quantityOnHand;
-        IsActive = isActive;
-        CreatedAtUtc = createdAtUtc;
+        Id = product.Id;
+        Name = product.Name;
+        Description = product.Description;
+        Sku = product.Sku;
+        Price = product.Price;
+        CategoryId = product.CategoryId;
+        QuantityOnHand = product.QuantityOnHand;
+        IsActive = product.IsActive;
+        CreatedAtUtc = product.CreatedAtUtc;
     }
     public Guid Id { get; }
     public string Name { get; }
@@ -26,7 +26,7 @@ public sealed class ProductResponse
     public static ProductResponse From(Product product)
     {
 
-        return new ProductResponse(product.Id, product.Name, product.Description, product.Sku, product.Price, product.CategoryId, product.QuantityOnHand, product.IsActive, product.CreatedAtUtc);
+        return new ProductResponse(product);
     }
     public static IReadOnlyList<ProductResponse> From(IReadOnlyList<Product> products)
     {
