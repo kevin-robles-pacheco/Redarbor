@@ -113,7 +113,7 @@ Skills: `.cursor/skills/redarbor-implement`, `.cursor/skills/redarbor-review`, `
 
 - [x] `verify-build` — `dotnet build`
 - [x] `verify-test` — `dotnet test`
-- [ ] `verify-review` — revisión de inglés, responsabilidades y capas
+- [x] `verify-review` — revisión de inglés, responsabilidades y capas
 - [x] `verify-smoke` — token, categoría, producto, entrada, salida rechazada y ráfaga 429
 
 ## Fuera de alcance

@@ -13,4 +13,4 @@ Artefactos Spec-Driven Development ([GitHub Spec Kit](https://github.com/github/
 | Quickstart | [`quickstart.md`](./quickstart.md) |
 | API y manual | [`docs/api.md`](../../docs/api.md), [`docs/manual.md`](../../docs/manual.md) |
 
-Estado: implementación entregada; tarea abierta de revisión `T046` / `verify-review` en `PLAN.md`.
+Estado: **Converged**. Verificación en [`verification.md`](./verification.md). Checklist `PLAN.md` con todos los `verify-*` cerrados.
