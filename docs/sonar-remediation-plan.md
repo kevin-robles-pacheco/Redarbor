@@ -137,14 +137,16 @@ Sin hallazgos Sonar. Mejoras de endurecimiento si se despliega fuera de la demo:
 ## Orden de ejecución sugerido
 
 ```text
-1. B3 suppress S3925 (rápido, limpia 16/19 smells)
-2. B2 S4457 (1 archivo)
-3. B1 S107 Product/ProductResponse
-4. A3 tests Application Get/Update
-5. A1 WebApplicationFactory Api
-6. A2 Infrastructure (según decisión Testcontainers)
-7. Re-correr Sonar → actualizar sonar-report.md
+1. B3 suppress S3925 (rápido, limpia 16/19 smells) ✅
+2. B2 S4457 (1 archivo) ✅
+3. B1 S107 Product/ProductResponse ✅
+4. A3 tests Application Get/Update ✅
+5. A1 WebApplicationFactory Api ✅
+6. A2 Infrastructure (EF InMemory; Dapper/Postgres opcional) ✅ meta ≥60%
+7. Re-correr Sonar → actualizar sonar-report.md (pendiente en CI/local)
 ```
+
+Progreso medido: [`sonar-coverage-progress.md`](./sonar-coverage-progress.md).
 
 ## Criterios de salida globales
 
