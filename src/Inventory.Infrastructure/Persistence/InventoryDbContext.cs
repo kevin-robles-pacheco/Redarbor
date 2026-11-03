@@ -5,9 +5,15 @@ using Microsoft.EntityFrameworkCore;
 namespace Inventory.Infrastructure.Persistence;
 public sealed class InventoryDbContext : DbContext
 {
+    private readonly bool _allowWrites;
     public InventoryDbContext(DbContextOptions<InventoryDbContext> options)
+        : this(options, allowWrites: false)
+    {
+    }
+    public InventoryDbContext(DbContextOptions<InventoryDbContext> options, bool allowWrites)
         : base(options)
     {
+        _allowWrites = allowWrites;
     }
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Product> Products => Set<Product>();
@@ -18,10 +24,21 @@ public sealed class InventoryDbContext : DbContext
     }
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
-        throw new InvalidOperationException("EF Core is limited to reads.");
+        EnsureWritesAreAllowed();
+
+        return base.SaveChanges(acceptAllChangesOnSuccess);
     }
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {
-        throw new InvalidOperationException("EF Core is limited to reads.");
+        EnsureWritesAreAllowed();
+
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+    private void EnsureWritesAreAllowed()
+    {
+        if (!_allowWrites)
+        {
+            throw new InvalidOperationException("EF Core is limited to reads.");
+        }
     }
 }
