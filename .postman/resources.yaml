@@ -1,0 +1,9 @@
+# Use this workspace to collaborate
+workspace:
+  id: ""
+
+localResources:
+  collections:
+    - ../docs/postman/inventory-api.postman_collection.json
+  environments:
+    - ../docs/postman/inventory-local.postman_environment.json

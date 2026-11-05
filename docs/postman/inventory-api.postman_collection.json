@@ -1,0 +1,304 @@
+{
+  "info": {
+    "_postman_id": "8f3c1a20-6b4e-4d91-9c2a-1a2b3c4d5e6f",
+    "name": "Inventory API",
+    "description": "Colección de la Inventory API.\n\nImporta también `inventory-local.postman_environment.json` y selecciónalo.\n\nOrden sugerido:\n1. Health\n2. Obtener token (guarda `accessToken`)\n3. Crear categoría (guarda `categoryId`)\n4. Crear producto (guarda `productId` y genera un SKU único)\n5. Entrada de stock y luego salida\n6. Consultas y actualizaciones\n\nEliminar una categoría falla con 409 si tiene productos. Eliminar un producto falla con 409 si tiene movimientos. Una salida con stock insuficiente también responde 409.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5043" },
+    { "key": "clientId", "value": "inventory-api" },
+    { "key": "clientSecret", "value": "local-dev-only" },
+    { "key": "accessToken", "value": "" },
+    { "key": "categoryId", "value": "" },
+    { "key": "productId", "value": "" },
+    { "key": "sku", "value": "WATER-1" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/health",
+            "description": "Público. Comprueba que el proceso responde."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Obtener token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const body = pm.response.json();",
+                  "    pm.collectionVariables.set('accessToken', body.access_token);",
+                  "    pm.environment.set('accessToken', body.access_token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "grant_type", "value": "client_credentials", "type": "text" },
+                { "key": "client_id", "value": "{{clientId}}", "type": "text" },
+                { "key": "client_secret", "value": "{{clientSecret}}", "type": "text" }
+              ]
+            },
+            "url": "{{baseUrl}}/oauth/token",
+            "description": "OAuth2 client credentials. Content-Type application/x-www-form-urlencoded. Guarda access_token en la variable accessToken."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Crear categoría",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const body = pm.response.json();",
+                  "    pm.collectionVariables.set('categoryId', body.id);",
+                  "    pm.environment.set('categoryId', body.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Beverages\",\n  \"description\": \"Drinks\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/categories",
+            "description": "201 con la categoría y cabecera Location. description es opcional. Guarda id en categoryId."
+          }
+        },
+        {
+          "name": "Listar categorías",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories",
+            "description": "200. Array de categorías."
+          }
+        },
+        {
+          "name": "Obtener categoría",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/{{categoryId}}",
+            "description": "200 si existe. 404 si no existe."
+          }
+        },
+        {
+          "name": "Actualizar categoría",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Beverages\",\n  \"description\": \"Cold and hot drinks\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/categories/{{categoryId}}",
+            "description": "200 con la categoría actualizada. 400 si el nombre es inválido. 404 si no existe."
+          }
+        },
+        {
+          "name": "Eliminar categoría",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/categories/{{categoryId}}",
+            "description": "204 si no tiene productos. 409 si tiene productos. 404 si no existe."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Crear producto",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const sku = 'WATER-' + Date.now();",
+                  "pm.collectionVariables.set('sku', sku);",
+                  "pm.environment.set('sku', sku);"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const body = pm.response.json();",
+                  "    pm.collectionVariables.set('productId', body.id);",
+                  "    pm.environment.set('productId', body.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Water\",\n  \"description\": \"Still water\",\n  \"sku\": \"{{sku}}\",\n  \"price\": 1.5,\n  \"categoryId\": \"{{categoryId}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/products",
+            "description": "201. quantityOnHand inicia en 0. Genera un SKU único antes de enviar. 409 si el SKU ya existe. 400 si la categoría o los datos no son válidos."
+          }
+        },
+        {
+          "name": "Listar productos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/products",
+            "description": "200. Array de productos."
+          }
+        },
+        {
+          "name": "Listar productos por categoría",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/products?categoryId={{categoryId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "products"],
+              "query": [
+                { "key": "categoryId", "value": "{{categoryId}}" }
+              ]
+            },
+            "description": "200. Filtra por categoryId."
+          }
+        },
+        {
+          "name": "Obtener producto",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/products/{{productId}}",
+            "description": "200 si existe. 404 si no existe."
+          }
+        },
+        {
+          "name": "Actualizar producto",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sparkling water\",\n  \"description\": \"Still water\",\n  \"sku\": \"{{sku}}\",\n  \"price\": 1.8,\n  \"categoryId\": \"{{categoryId}}\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/products/{{productId}}",
+            "description": "200. No cambia el stock. 409 si el SKU pertenece a otro producto."
+          }
+        },
+        {
+          "name": "Eliminar producto",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/products/{{productId}}",
+            "description": "204 si no tiene movimientos. 409 si tiene movimientos. 404 si no existe."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory movements",
+      "item": [
+        {
+          "name": "Entrada de stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"type\": \"In\",\n  \"quantity\": 5,\n  \"notes\": \"Initial receipt\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/inventory-movements",
+            "description": "200. Devuelve el producto con quantityOnHand actualizado. type es In o Out. quantity debe ser mayor que 0."
+          }
+        },
+        {
+          "name": "Salida de stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"type\": \"Out\",\n  \"quantity\": 2,\n  \"notes\": \"Sale\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/inventory-movements",
+            "description": "200 con el producto actualizado. 409 si la salida deja el stock por debajo de cero. 404 si el producto no existe."
+          }
+        }
+      ]
+    }
+  ]
+}
