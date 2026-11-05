@@ -4,6 +4,7 @@ namespace Inventory.Application.Tests.Fakes;
 public sealed class FakeProductWriteRepository : IProductWriteRepository
 {
     public Product? Added { get; private set; }
+    public Product? Updated { get; private set; }
     public bool DeleteWasCalled { get; private set; }
     public Task AddAsync(Product product, CancellationToken cancellationToken)
     {
@@ -13,6 +14,7 @@ public sealed class FakeProductWriteRepository : IProductWriteRepository
     }
     public Task UpdateAsync(Product product, CancellationToken cancellationToken)
     {
+        Updated = product;
 
         return Task.CompletedTask;
     }

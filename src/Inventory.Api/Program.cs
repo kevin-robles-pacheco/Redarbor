@@ -9,3 +9,6 @@ var app = builder.Build();
 await app.InitializeDatabaseAsync();
 app.UseInventoryApi();
 app.Run();
+public partial class Program
+{
+}
